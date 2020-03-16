@@ -6,7 +6,7 @@ startup();
 
 function startup() {
     getIP();
-    display.write(["myIp"]);
+    display.write(["myIp", "test"]);
 }
 
 function getIP() {
