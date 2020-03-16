@@ -74,11 +74,13 @@ function startup() {
     }
 
     dispInterval = setInterval(function() {
+        if (mycount > 100) { mycount = 0; }
         let readout = sensorLib.read();
-        console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
-        console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
+        let f = (readout.temperature.toFixed(1) * 1.8) + 32;
+        //console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
+        //console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
         
-        display.write([mytext, `Temp: ${readout.temperature.toFixed(1)}C`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
+        display.write([mytext, `T: ${readout.temperature.toFixed(1)} C | ${f}F`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
         mycount++;
     }, 2000);
 }
