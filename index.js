@@ -4,7 +4,7 @@ let display = require('./modules/display_old.js');
 const express = require('express');
 //const url = require('url');
 const app = express();
-const port = 80;
+const port = 8080;
 
 let myIp = "";
 
