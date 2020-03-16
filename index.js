@@ -55,8 +55,8 @@ app.listen(port, (err) => {
 });
 
 function shutdown() {
-    let lines = [{ "text": "Shutting down" }];
-    display.write(1, lines);
+    let lines = ["Shutting down"];
+    display.write(lines);
     let dir = exec(`shutdown now`, function (err, stdout, stderr) {
         if (err) {
             console.log('shutdown() ~ error sending command: ', err);
