@@ -24,6 +24,7 @@ function writeOled() {
         console.log("Set cursorInt to " + cursorInt);
         oled.setCursor(1, 1 + cursorInt);
         let linetxt = lines[i].text;
+        console.log(`linetxt: ${linetxt}`);
         oled.writeString(font, 1, linetxt, 1, false);
     }
 
