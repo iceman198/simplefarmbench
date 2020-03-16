@@ -14,10 +14,7 @@ let oled_opts = {
 let oled = new OLED(oled_opts);
 oled.turnOnDisplay();
 
-let lineSelected = 0;
-let lines = [" ", " ", " ", " "];
-
-function writeOled() {
+function writeOled(lines) {
     oled.clearDisplay();
     for (let i = 0; i < lines.length; i++) {
         let cursorInt = (i * 8);
@@ -33,6 +30,5 @@ function writeOled() {
 
 exports.write = function(mylines) {
     console.log(`my lines are : ${mylines}`);
-    lines = mylines;
-    writeOled();
+    writeOled(mylines);
 }
