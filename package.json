@@ -24,6 +24,7 @@
   "homepage": "https://github.com/iceman198/simplefarmbench#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "i2c-bus": "^5.1.0",
     "oled-font-5x7": "^1.0.3",
     "oled-ssd1306-i2c": "^1.0.6"
   }
