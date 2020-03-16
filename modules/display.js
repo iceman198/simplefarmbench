@@ -2,7 +2,7 @@
 
 let i2c = require('i2c-bus'),
     i2cBus = i2c.openSync(1),
-    oled = require('oled-i2c-bus'),
+    OLED = require('oled-i2c-bus'),
     font = require('oled-font-5x7');;
 
 let opts = {
@@ -11,7 +11,7 @@ let opts = {
     address: 0x3C
 };
 
-let oled = new oled(i2cBus, opts);
+let oled = new OLED(i2cBus, opts);
 
 exports.write = function(text) {
     oled.setCursor(1, 1);
