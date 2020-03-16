@@ -1,6 +1,6 @@
 "use strict";
 let exec = require('child_process').exec;
-let display = require('./modules/display_old.js');
+let display = require('./modules/display.js');
 const express = require('express');
 //const url = require('url');
 const app = express();
@@ -58,7 +58,7 @@ function shutdown() {
 
 function startup() {
     getIP();
-    let mytext = 'this is a test';
+    let mytext = `IP: ${myIp}`;
     console.log(`IP: ${myIp}`);
     display.write([mytext, 'two', 'three', 'four']);
 }
