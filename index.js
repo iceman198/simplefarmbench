@@ -11,7 +11,7 @@ function startup() {
     getIP();
     let mytext = 'this is a test';
     console.log(`I'm sending: ${mytext}`);
-    display.write([mytext]);
+    display.write([mytext, 'two', '', 'four']);
 }
 
 function getIP() {
