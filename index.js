@@ -20,10 +20,10 @@ app.get('/service/', (request, response) => {
     //var url_parts = url.parse(request.url, true);
     //var query = url_parts.query;
     let cmd = request.query.cmd;
-    console.log(`cmd is ${cmd}`);
+    console.log(`app()/service ~ cmd is ${cmd}`);
     if (cmd) {
         if (cmd == "shutdown") {
-            console.log('sending command: ' + cmd);
+            console.log('app()/service ~ sending command: ' + cmd);
             response.sendStatus(`Shutdown initiated`);
             shutdown();
         } else {
@@ -35,10 +35,10 @@ app.get('/service/', (request, response) => {
 
 app.listen(port, (err) => {
     if (err) {
-        return console.log('something bad happened', err)
+        return console.log('app().listen ~ something bad happened', err)
     }
 
-    console.log(`server is listening on ${port}`)
+    console.log(`ap().listen ~ server is listening on ${port}`)
 });
 
 function shutdown() {
@@ -46,20 +46,20 @@ function shutdown() {
     display.write(1, lines);
     let dir = exec(`shutdown now`, function (err, stdout, stderr) {
         if (err) {
-            console.log('error sending command: ', err);
+            console.log('shutdown() ~ error sending command: ', err);
         }
-        console.log(stdout);
+        console.log(`shutdown() ~ stdout: ${stdout}`);
     });
 
     dir.on('exit', function (code) {
-        console.log('exit complete with code ', code);
+        console.log('shutdown() ~ exit complete with code ', code);
     });
 }
 
 function startup() {
     getIP();
     let mytext = `IP: ${myIp}`;
-    console.log(`IP: ${myIp}`);
+    console.log(`startup() ~ IP: ${myIp}`);
     display.write([mytext, 'two', 'three', 'four']);
 }
 
@@ -79,11 +79,11 @@ function getIP() {
 
                 if (alias >= 1) {
                     // this single interface has multiple ipv4 addresses
-                    console.log(ifname + ':' + alias, iface.address);
+                    console.log(`getIP() ~ ${ifname}:${alias} - ${iface.address}`);
                     myIp = iface.address;
                 } else {
                     // this interface has only one ipv4 adress
-                    console.log(ifname, iface.address);
+                    console.log(`${ifname} - ${iface.address}`);
                     myIp = iface.address;
                 }
                 ++alias;
