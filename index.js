@@ -9,7 +9,9 @@ console.log('Ready');
 
 function startup() {
     getIP();
-    display.write('this is a test');
+    let mytext = 'this is a test';
+    console.log(`I'm sending: ${mytext}`);
+    display.write([mytext]);
 }
 
 function getIP() {

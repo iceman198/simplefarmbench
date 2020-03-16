@@ -14,6 +14,7 @@ let opts = {
 let oled = new OLED(i2cBus, opts);
 
 exports.write = function(text) {
+    console.log(`I recieve text: ${text}`);
     oled.setCursor(1, 1);
     oled.writeString(font, 1, text, 1, true);
     //oled.update();
