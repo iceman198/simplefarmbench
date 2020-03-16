@@ -5,6 +5,7 @@ let display = require('./modules/display.js');
 let myIp = "";
 
 startup();
+console.log('Ready');
 
 function startup() {
     getIP();
