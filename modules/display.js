@@ -8,7 +8,8 @@ let i2c = require('i2c-bus'),
 let opts = {
     width: 128,
     height: 32,
-    address: 0x3C
+    address: 0x3C,
+    device: '/dev/i2c-1'
 };
 
 let oled = new OLED(i2cBus, opts);
