@@ -15,7 +15,7 @@ let oled = new OLED(oled_opts);
 oled.turnOnDisplay();
 
 let lineSelected = 0;
-let lines = ["", "", "", ""];
+let lines = [" ", " ", " ", " "];
 
 function writeOled() {
     oled.clearDisplay();

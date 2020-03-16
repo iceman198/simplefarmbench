@@ -9,7 +9,7 @@ console.log('Ready');
 
 function startup() {
     getIP();
-    display.write(["myIp", "test"]);
+    display.write(["myIp", "test", " ", " "]);
 }
 
 function getIP() {
