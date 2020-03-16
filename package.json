@@ -1,0 +1,30 @@
+{
+  "name": "simplefarmbench",
+  "version": "1.0.0",
+  "description": "Just a nodejs app to monitor humidity and tempurature",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iceman198/simplefarmbench.git"
+  },
+  "keywords": [
+    "nodejs",
+    "farm",
+    "plants",
+    "humidity"
+  ],
+  "author": "Sean Dutton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iceman198/simplefarmbench/issues"
+  },
+  "homepage": "https://github.com/iceman198/simplefarmbench#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "oled-font-5x7": "^1.0.3",
+    "oled-ssd1306-i2c": "^1.0.6"
+  }
+}
