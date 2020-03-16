@@ -14,14 +14,14 @@ const port = 8080;
 let myIp = "";
 let dispInterval;
 let mycount = 0;
+let lampStatus = "off";
+let tempF = "0";
+let humidity = "0";
 
 startup();
 console.log('Ready');
 
 app.use(express.static('public'));
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/" + "index.html");
-});
 
 app.get('/service/', (request, response) => {
     //var url_parts = url.parse(request.url, true);
@@ -33,6 +33,12 @@ app.get('/service/', (request, response) => {
             console.log('app()/service ~ sending command: ' + cmd);
             response.sendStatus(`Shutdown initiated`);
             shutdown();
+        } else if (cmd == "gethumidity") {
+            // return the humidity
+        } else if (cmd == "gettemp") {
+            // return the temp
+        } else if (cmd == "getlamp") {
+            // return the lamp status
         } else {
             response.sendStatus(`Command not recognized`);
         }
@@ -81,8 +87,26 @@ function startup() {
         //console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
         
         display.write([mytext, `T: ${readout.temperature.toFixed(1)} C | ${f}F`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
+
+        if (f > 77) {
+            setLamp(false);
+        } else {
+            setLamp(true);
+        }
         mycount++;
     }, 2000);
+}
+
+function setLamp(on) {
+    if (on) {
+        console.log(`setLamp() ~ turning it on`);
+        lampStatus = "ON";
+        // set the lamp on
+    } else {
+        console.log(`setLamp() ~ turning it off`);
+        lampStatus = "OFF";
+        // set the lamp off
+    }
 }
 
 function getIP() {
@@ -113,3 +137,7 @@ function getIP() {
         }
     });
 }
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + "/" + "index.html");
+});
