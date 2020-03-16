@@ -1,37 +1,20 @@
 "use strict";
 
-let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
-let font = require('oled-font-5x7');
+let i2c = require('i2c-bus'),
+    i2cBus = i2c.openSync(1),
+    oled = require('oled-i2c-bus'),
+    font = require('oled-font-5x7');;
 
-let oled_opts = {
-    width: 128, // screen width
-    height: 32, // screen height
-    address: 0x3C, // Pass I2C address of screen if it is not the default of 0x3C
-    device: '/dev/i2c-1', // Pass your i2c device here if it is not /dev/i2c-1
-    microview: true, // set to true if you have a microview display
+let opts = {
+    width: 128,
+    height: 32,
+    address: 0x3C
 };
 
-let oled = new OLED(oled_opts);
-oled.turnOnDisplay();
+let oled = new oled(i2cBus, opts);
 
-let lineSelected = 0;
-let lines = [" ", " ", " ", " "];
-
-function writeOled() {
-    oled.clearDisplay();
-    for (let i = 0; i < lines.length; i++) {
-        let cursorInt = (i * 8);
-        console.log("Set cursorInt to " + cursorInt);
-        oled.setCursor(1, 1 + cursorInt);
-        let linetxt = lines[i].text;
-        console.log(`linetxt: ${linetxt}`);
-        oled.writeString(font, 1, linetxt, 1, false);
-    }
-
-    oled.update();
-}
-
-exports.write = function(mylines) {
-    lines = mylines;
-    writeOled();
+exports.write = function(text) {
+    oled.setCursor(1, 1);
+    oled.writeString(font, 1, text, 1, true);
+    //oled.update();
 }
