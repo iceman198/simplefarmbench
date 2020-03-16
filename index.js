@@ -1,3 +1,5 @@
+'use strict';
+
 let display = require('./modules/display.js');
 
 let myIp = "";
