@@ -1,9 +1,9 @@
 "use strict";
 
-let i2c = require('i2c-bus'),
-    i2cBus = i2c.openSync(1),
-    OLED = require('oled-i2c-bus'),
-    font = require('oled-font-5x7');
+let i2c = require('i2c-bus');
+let i2cBus = i2c.openSync(1);
+let OLED = require('oled-i2c-bus');
+let font = require('oled-font-5x7');
 
 let opts = {
     width: 128,
