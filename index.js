@@ -75,9 +75,6 @@ function startup() {
 
     dispInterval = setInterval(function() {
         let readout = sensorLib.read();
-        blynk.virtualWrite(3, readout.temperature.toFixed(1));
-        blynk.virtualWrite(4, readout.humidity.toFixed(1));
-        
         console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
         console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
         
