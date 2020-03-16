@@ -2,11 +2,18 @@
 let exec = require('child_process').exec;
 let display = require('./modules/display.js');
 const express = require('express');
+let sensorLib = require('node-dht-sensor');
+
+let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
+let sensorPin  = 4;  // The GPIO pin number for sensor signal
+
 //const url = require('url');
 const app = express();
 const port = 8080;
 
 let myIp = "";
+let dispInterval;
+let mycount = 0;
 
 startup();
 console.log('Ready');
@@ -38,7 +45,7 @@ app.listen(port, (err) => {
         return console.log('app().listen ~ something bad happened', err)
     }
 
-    console.log(`ap().listen ~ server is listening on ${port}`)
+    console.log(`app().listen ~ server is listening on ${port}`)
 });
 
 function shutdown() {
@@ -60,7 +67,23 @@ function startup() {
     getIP();
     let mytext = `IP: ${myIp}`;
     console.log(`startup() ~ IP: ${myIp}`);
-    display.write([mytext, 'two', 'three', 'four']);
+
+    if (!sensorLib.initialize(sensorType, sensorPin)) {
+        console.warn('Failed to initialize sensor');
+        process.exit(1);
+    }
+
+    dispInterval = setInterval(function() {
+        let readout = sensorLib.read();
+        blynk.virtualWrite(3, readout.temperature.toFixed(1));
+        blynk.virtualWrite(4, readout.humidity.toFixed(1));
+        
+        console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
+        console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
+        
+        display.write([mytext, `Temp: ${readout.temperature.toFixed(1)}C`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
+        mycount++;
+    }, 2000);
 }
 
 function getIP() {
@@ -83,7 +106,7 @@ function getIP() {
                     myIp = iface.address;
                 } else {
                     // this interface has only one ipv4 adress
-                    console.log(`${ifname} - ${iface.address}`);
+                    console.log(`getIP() ~ ${ifname} - ${iface.address}`);
                     myIp = iface.address;
                 }
                 ++alias;
