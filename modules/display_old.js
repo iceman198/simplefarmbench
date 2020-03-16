@@ -32,6 +32,7 @@ function writeOled() {
 }
 
 exports.write = function(mylines) {
+    console.log(`my lines are : ${mylines}`);
     lines = mylines;
     writeOled();
 }
