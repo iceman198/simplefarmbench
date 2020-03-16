@@ -20,7 +20,7 @@ function writeOled(lines) {
         let cursorInt = (i * 8);
         console.log("Set cursorInt to " + cursorInt);
         oled.setCursor(1, 1 + cursorInt);
-        let linetxt = lines[i].text;
+        let linetxt = lines[i];
         console.log(`linetxt: ${linetxt}`);
         oled.writeString(font, 1, linetxt, 1, false);
     }
