@@ -159,7 +159,7 @@ function setPin(pin, stat) {
         } catch (ex) {
             reject(ex);
         }
-    });
+    }).catch((err) => {});
 }
 
 app.get('/', function (req, res) {
