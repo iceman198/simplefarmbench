@@ -74,7 +74,7 @@ function shutdown() {
 }
 
 function startup() {
-    rgpio.setup(relayPin, rgpio.DIR_OUT);
+    rgpio.setup(relayPin, rgpio.DIR_LOW);
 
     getIP();
     let mytext = `IP: ${myIp}`;
@@ -103,16 +103,16 @@ function startup() {
     }, 2000);
 }
 
-function setLamp(on) {
+async function setLamp(on) {
     if (on) {
         console.log(`setLamp() ~ turning it on`);
         lampStatus = "ON";
-        setPin(relayPin, 1);
+        await setPin(relayPin, 1);
         // set the lamp on
     } else {
         console.log(`setLamp() ~ turning it off`);
         lampStatus = "OFF";
-        setPin(relayPin, 0);
+        await setPin(relayPin, 0);
         // set the lamp off
     }
 }
@@ -147,12 +147,15 @@ function getIP() {
 }
 
 function setPin(pin, stat) {
-    let value = false;
-    if (stat == 1) { value = true; }
-        rgpio.write(pin,  value,  function (err)  {
-            if  (err)  throw  err;
-            console.log(`setPin() ~ Set pin ${pin} to ${value}`);
-        });
+    return Promise((resolve, reject) => {
+        let value = false;
+        if (stat == 1) { value = true; }
+            rgpio.write(pin,  value,  function (err)  {
+                if  (err)  throw  err;
+                console.log(`setPin() ~ Set pin ${pin} to ${value}`);
+                resolve();
+            });
+    });
 }
 
 app.get('/', function (req, res) {
