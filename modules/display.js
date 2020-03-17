@@ -3,6 +3,8 @@
 //let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
 let OLED = require('oled-i2c-bus');
 let font = require('oled-font-5x7');
+let i2c = require('i2c-bus');
+let i2cBus = i2c.openSync(1);
 
 let oled_opts = {
     width: 128, // screen width
@@ -12,7 +14,8 @@ let oled_opts = {
     microview: true, // set to true if you have a microview display
 };
 
-let oled = new OLED(oled_opts);
+//let oled = new OLED(oled_opts);
+let oled = new OLED(i2cBus, oled_opts);
 oled.turnOnDisplay();
 
 function writeOled(lines) {
