@@ -107,12 +107,12 @@ async function setLamp(on) {
     if (on) {
         console.log(`setLamp() ~ turning it on`);
         lampStatus = "ON";
-        await setPin(relayPin, 1);
+        setPin(relayPin, 1);
         // set the lamp on
     } else {
         console.log(`setLamp() ~ turning it off`);
         lampStatus = "OFF";
-        await setPin(relayPin, 0).catch((err) => {});
+        setPin(relayPin, 0);
         // set the lamp off
     }
 }
@@ -147,19 +147,12 @@ function getIP() {
 }
 
 function setPin(pin, stat) {
-    return Promise((resolve, reject) => {
-        try {
-            let value = false;
-            if (stat == 1) { value = true; }
-            rgpio.write(pin, value, function (err) {
-                if (err) throw err;
-                console.log(`setPin() ~ Set pin ${pin} to ${value}`);
-                resolve();
-            });
-        } catch (ex) {
-            reject(ex);
-        }
-    }).catch((err) => {});
+    let value = false;
+    if (stat == 1) { value = true; }
+    rgpio.write(pin, value, function (err) {
+        if (err) throw err;
+        console.log(`setPin() ~ Set pin ${pin} to ${value}`);
+    });
 }
 
 app.get('/', function (req, res) {
