@@ -6,7 +6,7 @@ let sensorLib = require('node-dht-sensor');
 let rgpio = require('rpi-gpio');
 
 let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
-let sensorPin  = 4;  // The GPIO pin number for sensor signal
+let sensorPin = 4;  // The GPIO pin number for sensor signal
 
 let relayPin = 12; // for this library, it is really GPIO-18
 
@@ -85,13 +85,13 @@ function startup() {
         process.exit(1);
     }
 
-    dispInterval = setInterval(function() {
+    dispInterval = setInterval(function () {
         if (mycount > 100) { mycount = 0; }
         let readout = sensorLib.read();
         let f = (readout.temperature.toFixed(1) * 1.8) + 32;
         //console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
         //console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
-        
+
         //display.write([mytext, `T: ${readout.temperature.toFixed(1)} C | ${f}F`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
 
         if (f > 77) {
@@ -148,13 +148,17 @@ function getIP() {
 
 function setPin(pin, stat) {
     return Promise((resolve, reject) => {
-        let value = false;
-        if (stat == 1) { value = true; }
-            rgpio.write(pin,  value,  function (err)  {
-                if  (err)  throw  err;
+        try {
+            let value = false;
+            if (stat == 1) { value = true; }
+            rgpio.write(pin, value, function (err) {
+                if (err) throw err;
                 console.log(`setPin() ~ Set pin ${pin} to ${value}`);
                 resolve();
             });
+        } catch (ex) {
+            reject(ex);
+        }
     });
 }
 
