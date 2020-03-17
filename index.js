@@ -112,7 +112,7 @@ async function setLamp(on) {
     } else {
         console.log(`setLamp() ~ turning it off`);
         lampStatus = "OFF";
-        await setPin(relayPin, 0);
+        await setPin(relayPin, 0).catch((err) => {});
         // set the lamp off
     }
 }
