@@ -1,6 +1,7 @@
 "use strict";
 
-let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
+//let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
+let OLED = require('i2c-bus');
 let font = require('oled-font-5x7');
 
 let oled_opts = {
