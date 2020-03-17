@@ -3,9 +3,12 @@ let exec = require('child_process').exec;
 let display = require('./modules/display.js');
 const express = require('express');
 let sensorLib = require('node-dht-sensor');
+let rgpio = require('rpi-gpio');
 
 let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
 let sensorPin  = 4;  // The GPIO pin number for sensor signal
+
+let relayPin = 12; // for this library, it is really GPIO-18
 
 //const url = require('url');
 const app = express();
@@ -17,6 +20,7 @@ let mycount = 0;
 let lampStatus = "off";
 let tempF = "0";
 let humidity = "0";
+
 
 startup();
 console.log('Ready');
@@ -70,6 +74,8 @@ function shutdown() {
 }
 
 function startup() {
+    rgpio.setup(relayPin, rgpio.DIR_OUT);
+
     getIP();
     let mytext = `IP: ${myIp}`;
     console.log(`startup() ~ IP: ${myIp}`);
@@ -101,10 +107,12 @@ function setLamp(on) {
     if (on) {
         console.log(`setLamp() ~ turning it on`);
         lampStatus = "ON";
+        setPin(relayPin, 1);
         // set the lamp on
     } else {
         console.log(`setLamp() ~ turning it off`);
         lampStatus = "OFF";
+        setPin(relayPin, 0);
         // set the lamp off
     }
 }
@@ -136,6 +144,15 @@ function getIP() {
             });
         }
     });
+}
+
+function setPin(pin, stat) {
+    let value = false;
+    if (stat == 1) { value = true; }
+        rgpio.write(pin,  value,  function (err)  {
+            if  (err)  throw  err;
+            console.log(`setPin() ~ Set pin ${pin} to ${value}`);
+        });
 }
 
 app.get('/', function (req, res) {
