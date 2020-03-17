@@ -25,8 +25,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "i2c-bus": "^5.1.0",
+    "node-dht-sensor": "^0.4.1",
     "oled-font-5x7": "^1.0.3",
-    "oled-ssd1306-i2c": "^1.0.6",
+    "oled-i2c-bus": "^1.0.11",
     "rpi-gpio": "^2.1.5"
   }
 }
