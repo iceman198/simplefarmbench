@@ -81,7 +81,7 @@ function startup() {
     console.log(`startup() ~ IP: ${myIp}`);
 
     if (!sensorLib.initialize(sensorType, sensorPin)) {
-        console.warn('Failed to initialize sensor');
+        console.warn('startup() ~ Failed to initialize sensor');
         process.exit(1);
     }
 
@@ -89,8 +89,8 @@ function startup() {
         if (mycount > 100) { mycount = 0; }
         let readout = sensorLib.read();
         let f = (readout.temperature.toFixed(1) * 1.8) + 32;
-        //console.log('Temperature:', readout.temperature.toFixed(1) + 'C');
-        //console.log('Humidity:   ', readout.humidity.toFixed(1)    + '%');
+        console.log(`dispInterval ~ Temperature: ${readout.temperature.toFixed(1)}C | ${f}F`);
+        console.log(`dispInterval ~ Humidity: ${readout.humidity.toFixed(1)}%`);
 
         //display.write([mytext, `T: ${readout.temperature.toFixed(1)} C | ${f}F`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
 
@@ -151,7 +151,7 @@ function setPin(pin, stat) {
     if (stat == 1) { value = true; }
     rgpio.write(pin, value, function (err) {
         if (err) throw err;
-        console.log(`setPin() ~ Set pin ${pin} to ${value}`);
+        //console.log(`setPin() ~ Set pin ${pin} to ${value}`);
     });
 }
 
