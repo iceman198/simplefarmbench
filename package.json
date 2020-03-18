@@ -14,7 +14,8 @@
     "nodejs",
     "farm",
     "plants",
-    "humidity"
+    "humidity",
+    "seedlings"
   ],
   "author": "Sean Dutton",
   "license": "ISC",
