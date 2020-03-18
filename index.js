@@ -103,7 +103,7 @@ function startup() {
     }, 2000);
 }
 
-async function setLamp(on) {
+function setLamp(on) {
     if (on) {
         console.log(`setLamp() ~ turning it on`);
         lampStatus = "ON";
