@@ -18,3 +18,7 @@ sudo make install
 You'll want to install node version manager....take your pick on this, I am using: https://github.com/tj/n
 
 I went with version 6.10.3
+
+## Running
+You should now be able to do a `npm install`. This may take a little bit depending on what Raspberry Pi you're running.  Once done, you can start the application by running `node index.js`.
+

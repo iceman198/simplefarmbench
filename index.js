@@ -2,11 +2,11 @@
 let exec = require('child_process').exec;
 let display = require('./modules/display.js');
 const express = require('express');
-//let sensorLib = require('node-dht-sensor');
-let rpiDhtSensor = require('rpi-dht-sensor');
+let sensorLib = require('node-dht-sensor');
+//let rpiDhtSensor = require('rpi-dht-sensor');
 let rgpio = require('rpi-gpio');
 
-//let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
+let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
 let sensorPin = 4;  // The GPIO pin number for sensor signal
 
 let relayPin = 12; // for this library, it is really GPIO-18
@@ -81,19 +81,17 @@ function startup() {
     let mytext = `IP: ${myIp}`;
     console.log(`startup() ~ IP: ${myIp}`);
 
-    let dht = new rpiDhtSensor.DHT11(sensorPin);
+    //let dht = new rpiDhtSensor.DHT11(sensorPin);
 
-    /*
     if (!sensorLib.initialize(sensorType, sensorPin)) {
         console.warn('startup() ~ Failed to initialize sensor');
         process.exit(1);
     }
-    */
 
     dispInterval = setInterval(function () {
         if (mycount > 100) { mycount = 0; }
-        //let readout = sensorLib.read();
-        let readout = dht.read();
+        let readout = sensorLib.read();
+        //let readout = dht.read();
         let f = (readout.temperature.toFixed(1) * 1.8) + 32;
         console.log(`dispInterval ~ Temperature: ${readout.temperature.toFixed(1)}C | ${f}F`);
         console.log(`dispInterval ~ Humidity: ${readout.humidity.toFixed(1)}%`);
