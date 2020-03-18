@@ -13,3 +13,8 @@ make
 sudo make check
 sudo make install
 ```
+
+## Node setup
+You'll want to install node version manager....take your pick on this, I am using: https://github.com/tj/n
+
+I went with version 6.10.3
