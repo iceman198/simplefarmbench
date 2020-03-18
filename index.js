@@ -105,7 +105,7 @@ function startup() {
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
         //console.log(`Done writing to the display`);
 
-        if (f > 77) {
+        if (tempF > 77) {
             setLamp(false);
         } else {
             setLamp(true);
