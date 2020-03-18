@@ -20,6 +20,7 @@ let dispInterval;
 let mycount = 0;
 let lampStatus = "off";
 let tempF = "0";
+let tempC = "0";
 let humidity = "0";
 
 
@@ -92,11 +93,15 @@ function startup() {
         if (mycount > 100) { mycount = 0; }
         let readout = sensorLib.read();
         //let readout = dht.read();
-        let f = (readout.temperature.toFixed(1) * 1.8) + 32;
-        console.log(`dispInterval ~ Temperature: ${readout.temperature.toFixed(1)}C | ${f}F`);
-        console.log(`dispInterval ~ Humidity: ${readout.humidity.toFixed(1)}%`);
+        tempF = (readout.temperature.toFixed(1) * 1.8) + 32;
+        tempC = readout.temperature.toFixed(1);
+        humidity = readout.humidity.toFixed(1);
+        console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
+        console.log(`dispInterval ~ Humidity: ${humidity}%`);
 
-        display.write([mytext, `T: ${readout.temperature.toFixed(1)} C | ${f}F`, `Humidity: ${readout.humidity.toFixed(1)}%`, `${mycount}`]);
+        console.log(`About to write to the display`);
+        display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
+        console.log(`Done writing to the display`);
 
         if (f > 77) {
             setLamp(false);
