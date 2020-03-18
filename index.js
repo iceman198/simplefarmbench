@@ -37,18 +37,18 @@ app.get('/service/', (request, response) => {
     if (cmd) {
         if (cmd == "shutdown") {
             console.log('app()/service ~ sending command: ' + cmd);
-            response.sendStatus(`Shutdown initiated`);
+            response.send(`Shutdown initiated`);
             shutdown();
         } else if (cmd == "gethumidity") {
-            response.sendStatus(`${humidity}`);
+            response.send(`${humidity}`);
         } else if (cmd == "gettempf") {
-            response.sendStatus(`${tempF}`);
+            response.send(`${tempF}`);
         } else if (cmd == "gettempc") {
-            response.sendStatus(`${tempC}`);
+            response.send(`${tempC}`);
         } else if (cmd == "getlamp") {
-            response.sendStatus(`${lampStatus}`);
+            response.send(`${lampStatus}`);
         } else {
-            response.sendStatus(`Command not recognized`);
+            response.send(`Command not recognized`);
         }
 
     }
