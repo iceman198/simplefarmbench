@@ -1,6 +1,6 @@
 "use strict";
 let exec = require('child_process').exec;
-let display = require('./modules/display.js');
+//let display = require('./modules/display.js');
 const express = require('express');
 let sensorLib = require('node-dht-sensor');
 //let rpiDhtSensor = require('rpi-dht-sensor');
@@ -63,8 +63,8 @@ app.listen(port, (err) => {
 });
 
 function shutdown() {
-    let lines = ["Shutting down"];
-    display.write(lines);
+    //let lines = ["Shutting down"];
+    //display.write(lines);
     let dir = exec(`shutdown now`, function (err, stdout, stderr) {
         if (err) {
             console.log('shutdown() ~ error sending command: ', err);
@@ -101,9 +101,9 @@ function startup() {
         console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
         console.log(`dispInterval ~ Humidity: ${humidity}%`);
 
-        console.log(`About to write to the display`);
-        display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
-        console.log(`Done writing to the display`);
+        //console.log(`About to write to the display`);
+        //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
+        //console.log(`Done writing to the display`);
 
         if (f > 77) {
             setLamp(false);
