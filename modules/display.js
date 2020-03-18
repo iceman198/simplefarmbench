@@ -1,8 +1,8 @@
 "use strict";
 
-//let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
+let OLED = require('oled-ssd1306-i2c'); // https://github.com/perjg/oled_ssd1306_i2c
 //let OLED = require('oled-i2c-bus');
-let OLED = require('oled-js-pi');
+//let OLED = require('oled-js-pi');
 let font = require('oled-font-5x7');
 //let i2c = require('i2c-bus');
 //let i2cBus = i2c.openSync(1);
@@ -12,7 +12,7 @@ let oled_opts = {
     height: 32, // screen height
     address: 0x3C, // Pass I2C address of screen if it is not the default of 0x3C
     device: '/dev/i2c-1', // Pass your i2c device here if it is not /dev/i2c-1
-//    microview: true, // set to true if you have a microview display
+    microview: true, // set to true if you have a microview display
 };
 
 let oled = new OLED(oled_opts);
