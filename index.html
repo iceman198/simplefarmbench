@@ -5,19 +5,37 @@
     <title>Farm Bench</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
-        function getTempF() {
-            $.get("http://192.168.0.247:8080/service?cmd=gettempf", function (response) {
-                let data = response;
-                document.getElementById("tempf").innerHTML = data;
-            });
+        function init() {
+            setInterval(function () {
+                $.get("http://192.168.0.247:8080/service?cmd=gettempf", function (response) {
+                    let data = response + 'F';
+                    document.getElementById("tempf").innerHTML = data;
+                });
+                $.get("http://192.168.0.247:8080/service?cmd=gettempc", function (response) {
+                    let data = response + 'C';
+                    document.getElementById("tempc").innerHTML = data;
+                });
+                $.get("http://192.168.0.247:8080/service?cmd=gethumidity", function (response) {
+                    let data = response + '%';
+                    document.getElementById("humidity").innerHTML = data;
+                });
+                $.get("http://192.168.0.247:8080/service?cmd=getlamp", function (response) {
+                    let data = response;
+                    document.getElementById("lamp").innerHTML = data;
+                });
+
+            }, 2000);
         }
     </script>
 </head>
 
-<body>
+<body onload="init()">
     <h1>It works!</h1>
     <button onclick="getTempF()">Get TempF</button>
     <div id="tempf"></div>
+    <div id="tempc"></div>
+    <div id="humidity"></div>
+    <div id="lamp"></div>
 </body>
 
 </html>
