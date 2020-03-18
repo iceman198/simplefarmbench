@@ -100,6 +100,7 @@ function startup() {
         humidity = readout.humidity.toFixed(1);
         console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
         console.log(`dispInterval ~ Humidity: ${humidity}%`);
+        console.log(`dispInterval ~ mycount: ${mycount}`);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
@@ -116,12 +117,12 @@ function startup() {
 
 function setLamp(on) {
     if (on) {
-        console.log(`setLamp() ~ turning it on`);
+        //console.log(`setLamp() ~ turning it on`);
         lampStatus = "ON";
         setPin(relayPin, 1);
         // set the lamp on
     } else {
-        console.log(`setLamp() ~ turning it off`);
+        //console.log(`setLamp() ~ turning it off`);
         lampStatus = "OFF";
         setPin(relayPin, 0);
         // set the lamp off
