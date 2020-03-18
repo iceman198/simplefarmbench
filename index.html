@@ -1,8 +1,25 @@
 <html>
-    <head>
 
-    </head>
-    <body>
-        <h1>It works!</h1>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Farm Bench</title>
+    <script type="text/javascript">
+        function getTempF() {
+            $.get("http://192.168.0.247:8080/service?cmd=gettempf", function (response) {
+                let data = response;
+                document.getElementById("tempf").innerHTML = data;
+            }).error(function () {
+                alert("Sorry could not proceed");
+            });
+            return data;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>It works!</h1>
+    <button onclick="getTempF()">Get TempF</button>
+    <div id="tempf"></div>
+</body>
+
 </html>

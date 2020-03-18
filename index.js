@@ -40,11 +40,13 @@ app.get('/service/', (request, response) => {
             response.sendStatus(`Shutdown initiated`);
             shutdown();
         } else if (cmd == "gethumidity") {
-            // return the humidity
-        } else if (cmd == "gettemp") {
-            // return the temp
+            response.sendStatus(`${humidity}`);
+        } else if (cmd == "gettempf") {
+            response.sendStatus(`${tempF}`);
+        } else if (cmd == "gettempc") {
+            response.sendStatus(`${tempC}`);
         } else if (cmd == "getlamp") {
-            // return the lamp status
+            response.sendStatus(`${lampStatus}`);
         } else {
             response.sendStatus(`Command not recognized`);
         }
