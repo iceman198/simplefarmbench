@@ -9,8 +9,6 @@
             $.get("http://192.168.0.247:8080/service?cmd=gettempf", function (response) {
                 let data = response;
                 document.getElementById("tempf").innerHTML = data;
-            }).error(function () {
-                alert("Sorry could not proceed");
             });
             return data;
         }
