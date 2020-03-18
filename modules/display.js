@@ -20,19 +20,23 @@ let oled = new OLED(oled_opts);
 oled.turnOnDisplay();
 
 function writeOled(lines) {
+    console.log(`writeOled() ~ clearing the display`);
     oled.clearDisplay();
+    console.log(`writeOled() ~ done clearing the display`);
+
     for (let i = 0; i < lines.length; i++) {
         let cursorInt = (i * 8);
-        //console.log("Set cursorInt to " + cursorInt);
+        console.log(`writeOled() ~ Set cursorInt to ${cursorInt}`);
         oled.setCursor(1, 1 + cursorInt);
         let linetxt = lines[i];
-        //console.log(`linetxt: ${linetxt}`);
+        console.log(`writeOled() ~ linetxt: ${linetxt}`);
         oled.writeString(font, 1, linetxt, 1, false);
     }
+    console.log(`writeOled() ~ updating`);
     oled.update();
 }
 
 exports.write = function(mylines) {
-    //console.log(`my lines are : ${mylines}`);
+    console.log(`display.write ~ my lines are : ${mylines}`);
     writeOled(mylines);
 }
