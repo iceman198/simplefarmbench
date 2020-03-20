@@ -27,6 +27,11 @@ Install GPIO library
 pip3 install RPi.GPIO
 ```
 
+Install Pillow library
+```
+sudo apt-get install python3-pil
+```
+
 Install the Adafruit SD11306 library (read more here: https://learn.adafruit.com/monochrome-oled-breakouts/python-setup)
 ```
 pip3 install adafruit-circuitpython-ssd1306

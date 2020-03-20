@@ -1,30 +1,34 @@
-import board
-import busio
-import adafruit_ssd1306
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_SSD1306
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import subprocess
 
-from PIL import Image, ImageDraw, ImageFont
+RST = 0
 
-i2c = busio.I2C(board.SCL, board.SDA);
-oled = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, addr=0x3C);
+disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST, addr=0x3d)
+disp.begin()
+disp.clear()
+disp.display()
 
-# Load default font.
+width = disp.width
+height = disp.height
+
+image1 = Image.new('1', (width, height))
+draw = ImageDraw.Draw(image1)
+
+padding = -2
+top = padding
+
+bottom = height-padding
+x = 0
 font = ImageFont.load_default()
- 
-# Draw Some Text
-text = "Hello World!"
-(font_width, font_height) = font.getsize(text)
-draw.text(
-    (oled.width // 2 - font_width // 2, oled.height // 2 - font_height // 2),
-    text,
-    font=font,
-    fill=255,
-)
-oled.fill(0)
-oled.show()
- 
-# Create blank image for drawing.
-# Make sure to create image with mode '1' for 1-bit color.
-image = Image.new("1", (oled.width, oled.height))
- 
-# Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
+
+disp.clear()
+disp.display()
+draw.text((x, top),       "OLED Interfacing " ,  font=font, fill=255)
+draw.text((x, top+8),     "Circuit Digest", font=font, fill=255)
+
+disp.image(image1)
+disp.display()
