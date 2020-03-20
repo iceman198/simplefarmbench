@@ -1,4 +1,4 @@
-import board
+# import board
 import busio
 import adafruit_ssd1306
 
