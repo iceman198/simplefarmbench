@@ -7,19 +7,19 @@
     <script type="text/javascript">
         function init() {
             setInterval(function () {
-                $.get("http://192.168.0.247:8080/service?cmd=gettempf", function (response) {
+                $.get("http://gardenbench.local:8080/service?cmd=gettempf", function (response) {
                     let data = response + 'F';
                     document.getElementById("tempf").innerHTML = data;
                 });
-                $.get("http://192.168.0.247:8080/service?cmd=gettempc", function (response) {
+                $.get("http://gardenbench.local:8080/service?cmd=gettempc", function (response) {
                     let data = response + 'C';
                     document.getElementById("tempc").innerHTML = data;
                 });
-                $.get("http://192.168.0.247:8080/service?cmd=gethumidity", function (response) {
+                $.get("http://gardenbench.local:8080/service?cmd=gethumidity", function (response) {
                     let data = response + '%';
                     document.getElementById("humidity").innerHTML = data;
                 });
-                $.get("http://192.168.0.247:8080/service?cmd=getlamp", function (response) {
+                $.get("http://gardenbench.local:8080/service?cmd=getlamp", function (response) {
                     let data = response;
                     document.getElementById("lamp").innerHTML = data;
                 });
