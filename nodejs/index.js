@@ -19,7 +19,7 @@ let myIp = "";
 let dispInterval;
 let mycount = 0;
 let lampStatus = "off";
-let lampTemp = 77;
+let lampTemp = 68;
 let tempF = "0";
 let tempC = "0";
 let humidity = "0";
