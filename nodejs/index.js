@@ -9,6 +9,7 @@ let rgpio = require('rpi-gpio');
 const logger = require('./modules/logger.js');
 let logLevel = "debug";
 let Logger;
+let logFile = "./gardenlog.csv";
 
 let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
 let sensorPin = 4;  // The GPIO pin number for sensor signal
@@ -84,7 +85,7 @@ function shutdown() {
 }
 
 function startup() {
-    Logger = logger.use(null, logLevel);
+    Logger = logger.use(logFile, logLevel);
 
     rgpio.setup(relayPin, rgpio.DIR_LOW);
 
