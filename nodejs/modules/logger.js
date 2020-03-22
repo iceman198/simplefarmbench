@@ -18,7 +18,7 @@ function writeToLogFile(text) {
 			}
 		});
 	} else {
-		fs.appendFile(logFile, text + '\n', function(err) {
+		fs.appendFile(logFile, text + '\r\n', function(err) {
 			if(err) {
 				return console.log('ERROR: ' + err);
 			}
