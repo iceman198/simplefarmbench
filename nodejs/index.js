@@ -7,7 +7,7 @@ let sensorLib = require('node-dht-sensor');
 let rgpio = require('rpi-gpio');
 
 const logger = require('./modules/logger.js');
-let logLevel = debug;
+let logLevel = "debug";
 let Logger;
 
 let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
