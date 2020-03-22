@@ -6,6 +6,10 @@ let sensorLib = require('node-dht-sensor');
 //let rpiDhtSensor = require('rpi-dht-sensor');
 let rgpio = require('rpi-gpio');
 
+const logger = require('./modules/logger.js');
+let logLevel = debug;
+let Logger;
+
 let sensorType = 11; // 11 for DHT11, 22 for DHT22 and AM2302
 let sensorPin = 4;  // The GPIO pin number for sensor signal
 
@@ -80,6 +84,8 @@ function shutdown() {
 }
 
 function startup() {
+    Logger = logger.use(null, logLevel);
+
     rgpio.setup(relayPin, rgpio.DIR_LOW);
 
     getIP();
@@ -103,6 +109,8 @@ function startup() {
         console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
         console.log(`dispInterval ~ Humidity: ${humidity}%`);
         console.log(`dispInterval ~ mycount: ${mycount}`);
+
+        Logger.log('info', 'index.js', `${tempF},${tempC},${lampStatus},${humidity}`);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
