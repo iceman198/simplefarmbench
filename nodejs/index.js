@@ -111,7 +111,7 @@ function startup() {
         console.log(`dispInterval ~ Humidity: ${humidity}%`);
         console.log(`dispInterval ~ mycount: ${mycount}`);
 
-        Logger.log('info', 'index.js', `${tempF},${tempC},${lampStatus},${humidity}`);
+        Logger.log('info', 'index.js', `"${tempF}","${tempC}","${lampStatus}","${humidity}"`);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
