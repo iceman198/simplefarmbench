@@ -12,7 +12,7 @@ function Logger(logfile, loglevel) {
 function writeToLogFile(text) {
 	var fs = require('fs');
 	if (!fs.existsSync(logFile)) { // create the file if it doesn't exist
-		fs.writeFile(logFile, new Date() + ' - File created\n', function(err) {
+		fs.writeFile(logFile, new Date() + ' - File created\r\n', function(err) {
 			if(err) {
 				return console.log(err);
 			}
