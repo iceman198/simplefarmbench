@@ -19,7 +19,8 @@ let myIp = "";
 let dispInterval;
 let mycount = 0;
 let lampStatus = "off";
-let lampTemp = 68;
+let lampTempLow = 66;
+let lampTempHigh = 70;
 let tempF = "0";
 let tempC = "0";
 let humidity = "0";
@@ -107,9 +108,9 @@ function startup() {
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
         //console.log(`Done writing to the display`);
 
-        if (tempF > lampTemp) {
+        if (tempF > lampTempHigh) {
             setLamp(false);
-        } else {
+        } else if (tempF < lampTempLow) {
             setLamp(true);
         }
         mycount++;
