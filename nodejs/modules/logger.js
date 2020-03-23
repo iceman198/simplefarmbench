@@ -1,8 +1,9 @@
-var fs = require('fs');
+let fs = require('fs');
 
-var logLevel;
-var logFile;
-var fileSizeLimit = 2; // in megabytes
+let logLevel;
+let logFile;
+let fileSizeLimit = 2; // in megabytes
+let logfileheader = `"TIMESTAMP","debug","file","TempF","TempC","Lamp","Humidity","daytime"`;
 
 function Logger(logfile, loglevel) {
 	logLevel = loglevel;
@@ -10,9 +11,9 @@ function Logger(logfile, loglevel) {
 }
 
 function writeToLogFile(text) {
-	var fs = require('fs');
+	let fs = require('fs');
 	if (!fs.existsSync(logFile)) { // create the file if it doesn't exist
-		fs.writeFile(logFile, new Date() + ' - File created\r\n', function(err) {
+		fs.writeFile(logFile, `${logfileheader}\r\n`, function(err) {
 			if(err) {
 				return console.log(err);
 			}
@@ -26,11 +27,11 @@ function writeToLogFile(text) {
 		
 		// get the file size
 		try {
-			var stats = fs.statSync(logFile);
-			var fileSizeInBytes = stats["size"];
-			var fileSizeInMegabytes = fileSizeInBytes / 1000000.0;
+			let stats = fs.statSync(logFile);
+			let fileSizeInBytes = stats["size"];
+			let fileSizeInMegabytes = fileSizeInBytes / 1000000.0;
 			if (fileSizeInMegabytes > fileSizeLimit) {
-				var newFileName = logFile + '.' + Date.now();
+				let newFileName = logFile + '.' + Date.now();
 				fs.rename(logFile, newFileName, function(err) {
 					if (err) {
 						return console.log(err);
@@ -51,8 +52,8 @@ function writeToLogFile(text) {
 }
 
 Logger.prototype.log = (level, desc, text) => {
-	var levelNum = 0;
-	var logLevelNum = 0;
+	let levelNum = 0;
+	let logLevelNum = 0;
 	
 	if (level == 'all') {
 		levelNum = 0;
@@ -82,8 +83,8 @@ Logger.prototype.log = (level, desc, text) => {
 	
 	//console.log('logLevelNum: ' + logLevelNum + ' // levelNum passed: ' + levelNum);
 	
-	var stringFile = '"' + new Date() + '","' + level + '","' + desc + '","' + text + '"';
-	var stringConsole = new Date() + ' || ' + level + ' || ' + desc + ' || ' + text;
+	let stringFile = '"' + new Date() + '","' + level + '","' + desc + '","' + text + '"';
+	let stringConsole = new Date() + ' || ' + level + ' || ' + desc + ' || ' + text;
 	if (logLevelNum <= levelNum) {
 		console.log(stringConsole);
 		writeToLogFile(stringFile);
