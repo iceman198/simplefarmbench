@@ -13,6 +13,10 @@
         }
         function init() {
             setInterval(function () {
+                $.get("http://gardenbench.local:8080/service?cmd=getdaytime", function (response) {
+                    let data = 'Is it daytime = ' + response;
+                    document.getElementById("daytime").innerHTML = data;
+                });
                 $.get("http://gardenbench.local:8080/service?cmd=gettempf", function (response) {
                     let data = response + 'F';
                     document.getElementById("tempf").innerHTML = data;
@@ -41,6 +45,7 @@
     <div id="tempc"></div>
     <div id="humidity"></div>
     <div id="lamp"></div>
+    <div id="daytime"></div>
     <div><button onclick="shutdown()">Shutdown</button></div>
 </body>
 

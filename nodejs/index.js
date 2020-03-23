@@ -24,6 +24,8 @@ let myIp = "";
 let dispInterval;
 let mycount = 0;
 let lampStatus = "off";
+let daytimeStart = 08;
+let daytimeEnd = 07;
 let lampTempLowDaytime = 66;
 let lampTempHighDaytime = 70;
 let lampTempLowNighttime = 60;
@@ -48,6 +50,8 @@ app.get('/service/', (request, response) => {
             console.log('app()/service ~ sending command: ' + cmd);
             response.send(`Shutdown initiated`);
             shutdown();
+        } else if (cmd == "getdaytime") {
+            response.send(`${isDaytime()}`);
         } else if (cmd == "gethumidity") {
             response.send(`${humidity}`);
         } else if (cmd == "gettempf") {
@@ -119,10 +123,18 @@ function startup() {
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
         //console.log(`Done writing to the display`);
 
-        if (tempF > lampTempHighDaytime) {
-            setLamp(false);
-        } else if (tempF < lampTempLowDaytime) {
-            setLamp(true);
+        if (isDaytime()) {
+            if (tempF > lampTempHighDaytime) {
+                setLamp(false);
+            } else if (tempF < lampTempLowDaytime) {
+                setLamp(true);
+            }
+        } else {
+            if (tempF > lampTempHighNighttime) {
+                setLamp(false);
+            } else if (tempF < lampTempLowNighttime) {
+                setLamp(true);
+            }
         }
         mycount++;
     }, 2000);
@@ -169,6 +181,17 @@ function getIP() {
             });
         }
     });
+}
+
+function isDaytime() {
+    let d = new Date();
+    let h = d.getHours();
+
+    if (h > daytimeStart && h < daytimeEnd) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function setPin(pin, stat) {
