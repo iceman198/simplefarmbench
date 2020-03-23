@@ -2,7 +2,7 @@ let fs = require('fs');
 
 let logLevel;
 let logFile;
-let fileSizeLimit = 2; // in megabytes
+let fileSizeLimit = 1; // in megabytes
 let logfileheader = `"TIMESTAMP","debug","file","TempF","TempC","Lamp","Humidity","daytime"`;
 
 function Logger(logfile, loglevel) {

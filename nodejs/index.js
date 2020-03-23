@@ -20,6 +20,8 @@ let relayPin = 12; // for this library, it is really GPIO-18
 const app = express();
 const port = 8080;
 
+let intervalTime = 10000; // 10 seconds
+
 let myIp = "";
 let dispInterval;
 let mycount = 0;
@@ -137,7 +139,7 @@ function startup() {
             }
         }
         mycount++;
-    }, 2000);
+    }, intervalTime);
 }
 
 function setLamp(on) {
