@@ -25,7 +25,7 @@ let dispInterval;
 let mycount = 0;
 let lampStatus = "off";
 let daytimeStart = 8;
-let daytimeEnd = 7;
+let daytimeEnd = 19;
 let lampTempLowDaytime = 64;
 let lampTempHighDaytime = 68;
 let lampTempLowNighttime = 60;
