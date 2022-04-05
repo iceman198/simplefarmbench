@@ -130,6 +130,7 @@ function startup() {
         console.log(`dispInterval ~ mycount: ${mycount}`);
 
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
+        oled.clearDisplay();
         oled.setCursor(0, 0);
         oled.writeString(font, 2, `Temp: ${tempF}`, 1, true);
         oled.setCursor(0, 20);
