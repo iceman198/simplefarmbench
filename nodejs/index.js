@@ -5,7 +5,7 @@ const express = require('express');
 let sensorLib = require('node-dht-sensor');
 //let rpiDhtSensor = require('rpi-dht-sensor');
 let rgpio = require('rpi-gpio');
-let oled = require('rpi-oled');
+let roled = require('rpi-oled');
 let font = require('oled-font-5x7');
 
 let opts = {
@@ -13,7 +13,7 @@ let opts = {
     height: 64,
   };
   
-let oled = new oled(opts);
+let oled = new roled(opts);
 oled.clearDisplay();
 
 const logger = require('./modules/logger.js');
