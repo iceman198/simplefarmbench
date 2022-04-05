@@ -130,12 +130,12 @@ function startup() {
         console.log(`dispInterval ~ mycount: ${mycount}`);
 
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
-        oled.setCursor(1, 1);
-        oled.writeString(font, 1, `Temp: ${tempF}`, 1, true);
-        oled.setCursor(1, 10);
-        oled.writeString(font, 1, `Hum: ${humidity}`, 1, true);
-        oled.setCursor(1,20);
-        oled.writeString(font, 1, `Lamp: ${lampStatus}`, 1, true);
+        oled.setCursor(0, 0);
+        oled.writeString(font, 2, `Temp: ${tempF}`, 1, true);
+        oled.setCursor(0, 20);
+        oled.writeString(font, 2, `Hum: ${humidity}`, 1, true);
+        oled.setCursor(0, 40);
+        oled.writeString(font, 2, `Lamp: ${lampStatus}`, 1, true);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
