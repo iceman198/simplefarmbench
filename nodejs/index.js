@@ -129,6 +129,10 @@ function startup() {
         console.log(`dispInterval ~ Humidity: ${humidity}%`);
         console.log(`dispInterval ~ mycount: ${mycount}`);
 
+        if (tempF.length > 5) {
+            tempF = tempF.substring(0, 4);
+        }
+
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
         oled.clearDisplay();
         oled.setCursor(0, 0);
