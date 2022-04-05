@@ -6,30 +6,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         function shutdown() {
-            $.get("http://gardenbench.local:8080/service?cmd=shutdown", function (response) {
+            $.get("http://gardenbench.dbiz:8080/service?cmd=shutdown", function (response) {
                 let data = response;
                 document.getElementById("tempf").innerHTML = data;
             });
         }
         function init() {
             setInterval(function () {
-                $.get("http://gardenbench.local:8080/service?cmd=getdaytime", function (response) {
+                $.get("http://gardenbench.dbiz:8080/service?cmd=getdaytime", function (response) {
                     let data = 'Is it daytime = ' + response;
                     document.getElementById("daytime").innerHTML = data;
                 });
-                $.get("http://gardenbench.local:8080/service?cmd=gettempf", function (response) {
+                $.get("http://gardenbench.dbiz:8080/service?cmd=gettempf", function (response) {
                     let data = response + 'F';
                     document.getElementById("tempf").innerHTML = data;
                 });
-                $.get("http://gardenbench.local:8080/service?cmd=gettempc", function (response) {
+                $.get("http://gardenbench.dbiz:8080/service?cmd=gettempc", function (response) {
                     let data = response + 'C';
                     document.getElementById("tempc").innerHTML = data;
                 });
-                $.get("http://gardenbench.local:8080/service?cmd=gethumidity", function (response) {
+                $.get("http://gardenbench.dbiz:8080/service?cmd=gethumidity", function (response) {
                     let data = response + '%';
                     document.getElementById("humidity").innerHTML = data;
                 });
-                $.get("http://gardenbench.local:8080/service?cmd=getlamp", function (response) {
+                $.get("http://gardenbench.dbiz:8080/service?cmd=getlamp", function (response) {
                     let data = response;
                     document.getElementById("lamp").innerHTML = "Lamp is " + data;
                 });
