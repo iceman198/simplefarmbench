@@ -5,6 +5,16 @@ const express = require('express');
 let sensorLib = require('node-dht-sensor');
 //let rpiDhtSensor = require('rpi-dht-sensor');
 let rgpio = require('rpi-gpio');
+let oled = require('rpi-oled');
+let font = require('oled-font-5x7');
+
+let opts = {
+    width: 128,
+    height: 64,
+  };
+  
+let oled = new oled(opts);
+oled.clearDisplay();
 
 const logger = require('./modules/logger.js');
 let logLevel = "debug";
@@ -120,6 +130,12 @@ function startup() {
         console.log(`dispInterval ~ mycount: ${mycount}`);
 
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
+        oled.setCursor(1, 1);
+        oled.writeString(`Temp: ${tempF}`);
+        oled.setCursor(1, 2);
+        oled.writeString(`Hum: ${humidity}`);
+        oled.setCursor(1,3);
+        oled.writeString(`Lamp: ${lampStatus}`);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
