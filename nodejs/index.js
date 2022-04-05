@@ -137,11 +137,11 @@ function startup() {
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
         oled.clearDisplay();
         oled.setCursor(0, 0);
-        oled.writeString(font, 2, `Temp: ${tempF}`, 1, true);
+        oled.writeString(font, 2, `Temp: ${tempF}`, 1, false);
         oled.setCursor(0, 20);
-        oled.writeString(font, 2, `Hum: ${humidity}`, 1, true);
+        oled.writeString(font, 2, `Hum: ${humidity}`, 1, false);
         oled.setCursor(0, 40);
-        oled.writeString(font, 2, `Lamp: ${lampStatus}`, 1, true);
+        oled.writeString(font, 2, `Lamp: ${lampStatus}`, 1, false);
 
         //console.log(`About to write to the display`);
         //display.write([mytext, `T: ${tempC} C | ${tempF}F`, `Humidity: ${humidity}%`, `${mycount}`]);
