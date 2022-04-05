@@ -30,7 +30,7 @@ let relayPin = 12; // for this library, it is really GPIO-18
 const app = express();
 const port = 8080;
 
-let intervalTime = 10000; // 10 seconds
+let intervalTime = 10000; // in miliseconds (1000 to 1 second)
 
 let myIp = "";
 let dispInterval;
