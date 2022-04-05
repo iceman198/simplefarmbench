@@ -125,13 +125,14 @@ function startup() {
         tempF = (readout.temperature.toFixed(1) * 1.8) + 32;
         tempC = readout.temperature.toFixed(1);
         humidity = readout.humidity.toFixed(1);
-        console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
-        console.log(`dispInterval ~ Humidity: ${humidity}%`);
-        console.log(`dispInterval ~ mycount: ${mycount}`);
 
         if (tempF.length > 5) {
             tempF = tempF.substring(0, 4);
         }
+
+        console.log(`dispInterval ~ Temperature: ${tempC}C | ${tempF}F`);
+        console.log(`dispInterval ~ Humidity: ${humidity}%`);
+        console.log(`dispInterval ~ mycount: ${mycount}`);
 
         Logger.log('info', 'index.js', `${tempF}","${tempC}","${lampStatus}","${humidity}","${isDaytime()}`);
         oled.clearDisplay();
