@@ -122,8 +122,9 @@ function startup() {
         if (mycount > 100) { mycount = 0; }
         let readout = sensorLib.read();
         //let readout = dht.read();
-        tempF = (readout.temperature.toFixed(1) * 1.8) + 32;
         tempC = readout.temperature.toFixed(1);
+        tempF = (tempC * 1.8) + 32;
+        
         humidity = readout.humidity.toFixed(1);
 
         if (tempF.length > 5) {
