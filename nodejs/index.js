@@ -90,6 +90,11 @@ app.listen(port, (err) => {
 function shutdown() {
     //let lines = ["Shutting down"];
     //display.write(lines);
+    dispInterval = null;
+    oled.clearDisplay();
+    oled.setCursor(0, 0);
+    oled.writeString(font, 2, `Shutting down`, 1, true);
+
     let dir = exec(`shutdown now`, function (err, stdout, stderr) {
         if (err) {
             console.log('shutdown() ~ error sending command: ', err);
