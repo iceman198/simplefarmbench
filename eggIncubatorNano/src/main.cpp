@@ -12,8 +12,8 @@
 #define DHTTYPE    DHT11     // DHT 11
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
-int maxTemp = 105;
-int minTemp = 100;
+int maxTemp = 108;
+int minTemp = 102;
 
 int relayPin = 3;
 String lamp = "OFF";
@@ -84,7 +84,7 @@ void setup() {
 }
 
 void loop() {
-  delay(5000);
+  delay(2000);
   int tempF = 0;
   int tempC = 0;
   int hum = 0;
