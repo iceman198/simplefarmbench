@@ -16,6 +16,7 @@ int maxTemp = 105;
 int minTemp = 100;
 
 int relayPin = 3;
+String lamp = "OFF";
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -115,7 +116,6 @@ void loop() {
     //Serial.println(F("%"));
   }
 
-  String lamp = "OFF";
   if (tempF > maxTemp) {
     lamp = "OFF";
     digitalWrite(relayPin, LOW);
