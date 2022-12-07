@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/iceman198/simplefarmbench#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "i2c-bus": "^5.1.0",
     "node-dht-sensor": "^0.4.1",
     "oled-font-5x7": "^1.0.3",
