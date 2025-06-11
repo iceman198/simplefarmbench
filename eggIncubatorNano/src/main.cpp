@@ -16,8 +16,8 @@ int loopTracker = 0;
 int loopTrackerMax = 50;
 int loopDelay = 200; // in miliseconds
 
-int maxTemp = 105;
-int minTemp = 101;
+int maxTemp = 100.0;
+int minTemp = 99.6;
 
 bool atHomeScreen = true;
 int buttons[] = {12, 11, 10, 9};
